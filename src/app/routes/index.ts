@@ -1,6 +1,4 @@
 import express from 'express';
-import { AuthRouters } from '../modules/auth/auth.routes';
-import { PaymentRouters } from '../modules/payment/payment.route';
 import { ImageRoutes } from '../modules/extractImageData/image.routes';
 const router = express.Router();
 
