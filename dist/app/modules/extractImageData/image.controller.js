@@ -18,6 +18,13 @@ const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const http_status_1 = __importDefault(require("http-status"));
 const extractImageData = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.body.imageBase64) {
+        return res.status(400).json({
+            success: false,
+            message: 'imageBase64 field is required in the request body',
+            data: null,
+        });
+    }
     const result = yield image_service_1.ImageServices.extractDataFromImage(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

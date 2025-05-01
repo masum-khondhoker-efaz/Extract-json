@@ -8,6 +8,14 @@ import httpStatus from 'http-status';
 
 const extractImageData = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    if (!req.body.imageBase64) {
+      return res.status(400).json({
+        success: false,
+        message: 'imageBase64 field is required in the request body',
+        data: null,
+      });
+    }
+
     const result = await ImageServices.extractDataFromImage(req.body);
 
     sendResponse<IImageExtractionResponse>(res, {
